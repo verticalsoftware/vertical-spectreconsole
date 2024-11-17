@@ -9,7 +9,6 @@ System.AggregateException: One or more errors occurred. (Sequence contains no el
       at System.Linq.Enumerable.First(System.Collections.Generic.IEnumerable`1 source)
       at Vertical.SpectreLogger.Tests.Infrastructure.<>c.<GetAggregateException>b__ANY() in {ProjectDirectory}Infrastructure/ExceptionHelper.cs:line {line}
       at System.Threading.Tasks.Task`1.InnerInvoke()
-      at System.Threading.Tasks.<>c.<.cctor>b__ANY(System.Object obj)
       at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(System.Threading.Thread threadPoolThread, System.Threading.ExecutionContext executionContext, System.Threading.ContextCallback callback, System.Object state)
       at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
       at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(System.Threading.Thread threadPoolThread, System.Threading.ExecutionContext executionContext, System.Threading.ContextCallback callback, System.Object state)

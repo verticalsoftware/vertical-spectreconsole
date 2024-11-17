@@ -9,5 +9,5 @@ System.AggregateException: One or more errors occurred. (Sequence contains no el
       at System.Linq.Enumerable.First(source)
       at Vertical.SpectreLogger.Tests.Infrastructure.<>c.<GetAggregateException>b__ANY() in {ProjectDirectory}Infrastructure/ExceptionHelper.cs:line {line}
       at System.Threading.Tasks.Task`1.InnerInvoke()
-      at System.Threading.Tasks.<>c.<.cctor>b__ANY(obj)
-      +4 more...
+      at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(threadPoolThread, executionContext, callback, state)
+      +3 more...
