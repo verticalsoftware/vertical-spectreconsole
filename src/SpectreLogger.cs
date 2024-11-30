@@ -38,7 +38,7 @@ namespace Vertical.SpectreLogger
             LogLevel logLevel, 
             EventId eventId, 
             TState state, 
-            Exception exception, 
+            Exception? exception, 
             Func<TState, Exception, string> formatter)
         {
             if (!IsEnabled(logLevel))
@@ -71,7 +71,7 @@ namespace Vertical.SpectreLogger
         }
 
         /// <inheritdoc />
-        public IDisposable BeginScope<TState>(TState state)
+        public IDisposable BeginScope<TState>(TState state) where TState : notnull
         {
             return _scopeManager.BeginScope(state);
         }

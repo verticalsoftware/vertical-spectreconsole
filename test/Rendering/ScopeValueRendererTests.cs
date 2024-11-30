@@ -40,7 +40,7 @@ namespace Vertical.SpectreLogger.Tests.Rendering
             new object[]
             {
                 "{Scope=scope}{Message}",
-                new Func<ILogger, IDisposable>(log => log.BeginScope("test")),
+                new Func<ILogger, IDisposable>(log => log.BeginScope("test")!),
                 "no scope",
                 "no scope"
             },
@@ -50,7 +50,7 @@ namespace Vertical.SpectreLogger.Tests.Rendering
                 new Func<ILogger, IDisposable>(log => log.BeginScope(new Dictionary<string, object>
                 {
                     ["x"]=10,["y"]=20
-                })),
+                })!),
                 "mouse clicked",
                 "(10,20) mouse clicked"
             },
@@ -61,7 +61,7 @@ namespace Vertical.SpectreLogger.Tests.Rendering
                 {
                     new KeyValuePair<string,object>("x", 10),
                     new KeyValuePair<string,object>("y", 20)
-                })),
+                })!),
                 "mouse clicked",
                 "(10,20) mouse clicked"
             },
@@ -74,7 +74,7 @@ namespace Vertical.SpectreLogger.Tests.Rendering
                     var queue = new Queue<KeyValuePair<string, object>>();
                     queue.Enqueue(new KeyValuePair<string, object>("x",10));
                     queue.Enqueue(new KeyValuePair<string, object>("y",20));
-                    return log.BeginScope(queue);
+                    return log.BeginScope(queue)!;
                 }),
                 "mouse clicked",
                 "(10,20) mouse clicked"
@@ -82,7 +82,7 @@ namespace Vertical.SpectreLogger.Tests.Rendering
             new object[]
             {
                 "({Scope=x},{Scope=y}) {Message}",
-                new Func<ILogger, IDisposable>(log => log.BeginScope("Mouse is at {x},{y}", 10, 20)),
+                new Func<ILogger, IDisposable>(log => log.BeginScope("Mouse is at {x},{y}", 10, 20)!),
                 "mouse clicked",
                 "(10,20) mouse clicked"
             }

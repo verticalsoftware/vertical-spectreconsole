@@ -93,7 +93,7 @@ namespace Vertical.SpectreLogger.Tests.Rendering
             {
                 "{Scopes}{Message}",
                 new Action<ScopeValuesRenderer.Options>(_ => {}),
-                new Func<ILogger, IDisposable>(logger => logger.BeginScope("{x},{y}", 10, 20)),
+                new Func<ILogger, IDisposable>(logger => logger.BeginScope("{x},{y}", 10, 20)!),
                 "scope",
                 "10,20 => scope"
             },
@@ -101,7 +101,7 @@ namespace Vertical.SpectreLogger.Tests.Rendering
             {
                 "{Scopes}{Message}",
                 new Action<ScopeValuesRenderer.Options>(_ => {}),
-                new Func<ILogger, IDisposable>(logger => logger.BeginScope(new {x=10,y=20})),
+                new Func<ILogger, IDisposable>(logger => logger.BeginScope(new {x=10,y=20})!),
                 "scope",
                 "{x: 10, y: 20} => scope"
             },
@@ -112,7 +112,7 @@ namespace Vertical.SpectreLogger.Tests.Rendering
                 new Func<ILogger, IDisposable>(logger =>
                 {
                     logger.BeginScope(new {x = 10, y = 20});
-                    return logger.BeginScope("z = {z}", 30);
+                    return logger.BeginScope("z = {z}", 30)!;
                 }),
                 "scope",
                 "{x: 10, y: 20} => z = 30 => scope"
@@ -121,7 +121,7 @@ namespace Vertical.SpectreLogger.Tests.Rendering
             {
                 "{Scopes}{Message}",
                 new Action<ScopeValuesRenderer.Options>(opt => opt.ContentBefore = "scopes= "),
-                new Func<ILogger, IDisposable>(logger => logger.BeginScope(new {x=10,y=20})),
+                new Func<ILogger, IDisposable>(logger => logger.BeginScope(new {x=10,y=20})!),
                 "scope",
                 "scopes= {x: 10, y: 20} => scope"
             },
@@ -132,7 +132,7 @@ namespace Vertical.SpectreLogger.Tests.Rendering
                 new Func<ILogger, IDisposable>(logger =>
                 {
                     logger.BeginScope(new {x = 10, y = 20});
-                    return logger.BeginScope("z = {z}", 30);
+                    return logger.BeginScope("z = {z}", 30)!;
                 }),
                 "scope",
                 "{x: 10, y: 20}>>>z = 30 => scope"
@@ -141,7 +141,7 @@ namespace Vertical.SpectreLogger.Tests.Rendering
             {
                 "{Scopes}{Message}",
                 new Action<ScopeValuesRenderer.Options>(opt => opt.ContentAfter = ">>>"),
-                new Func<ILogger, IDisposable>(logger => logger.BeginScope(new {x=10,y=20})),
+                new Func<ILogger, IDisposable>(logger => logger.BeginScope(new {x=10,y=20})!),
                 "scope",
                 "{x: 10, y: 20}>>>scope"
             }

@@ -1,5 +1,4 @@
 using System;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using VerifyXunit;
@@ -10,7 +9,6 @@ using Xunit;
 
 namespace Vertical.SpectreLogger.Tests.Rendering
 {
-    [UsesVerify]
     public class ExceptionRendererTests
     {
         [Fact]

@@ -13,7 +13,6 @@ using Xunit;
 
 namespace Vertical.SpectreLogger.Tests.Destructuring
 {
-    [UsesVerify]
     public class DestructuringWriterTests
     {
         [Fact]

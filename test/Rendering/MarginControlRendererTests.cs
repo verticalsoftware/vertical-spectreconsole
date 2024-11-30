@@ -6,7 +6,6 @@ using Xunit;
 
 namespace Vertical.SpectreLogger.Tests.Rendering
 {
-    [UsesVerify]
     public class MarginControlRendererTests
     {
         [Fact]
