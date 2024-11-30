@@ -15,6 +15,10 @@ namespace Vertical.SpectreLogger.Tests.Infrastructure
                 src,
                 @"b__\d+_\d+\(",
                 "b__ANY("));
+            settings.ScrubLinesWithReplace(src => Regex.Replace(
+                src,
+                "at System.Threading.ExecutionContext.Run(.+)",
+                "at System.Threading.ExecutionContext.Run[ThreadMethod]"));
             
             return settings;
         });

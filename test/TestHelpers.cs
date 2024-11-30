@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.ObjectPool;
 using NSubstitute;
 using Shouldly;
-using Spectre.Console;
 using Vertical.SpectreLogger.Core;
-using Vertical.SpectreLogger.Internal;
 using Vertical.SpectreLogger.Output;
 
 namespace Vertical.SpectreLogger.Tests

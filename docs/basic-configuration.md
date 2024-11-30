@@ -30,7 +30,7 @@ var loggerFactory = LoggerFactory
 
 ### Setting the minimum log event level.
 
-The provider will not display any log events introduced that are of less of a severity than the configured value. By default, the provider sets the minimum level to `LogLevel.Information`. Additionally, you can configure the minimum log level for specific logging categories.
+The provider will not display any log events introduced that are of less of a severity than the configured value. By default, the provider sets the minimum level to `LogLevel.Information`. Additionally, you can configure the minimum log level for specific or groups of logging categories. Filters are selected using the best substring category match.
 
 ```csharp
 // Trace & debug events are not displayed for any events

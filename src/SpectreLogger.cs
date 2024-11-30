@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Microsoft.Extensions.Logging;
 using Vertical.SpectreLogger.Core;
 using Vertical.SpectreLogger.Options;
@@ -30,7 +31,7 @@ namespace Vertical.SpectreLogger
             _categoryName = categoryName;
             _options = options;
             _logEventFilter = _options.LogEventFilter;
-            _minimumLevel = ResolveMinimumLevel();
+            _minimumLevel = ResolveMinimumLevel(categoryName);
         }
 
         /// <inheritdoc />
@@ -76,13 +77,17 @@ namespace Vertical.SpectreLogger
             return _scopeManager.BeginScope(state);
         }
 
-        private LogLevel ResolveMinimumLevel()
+        private LogLevel ResolveMinimumLevel(string categoryName)
         {
-            return _options.MinimumLevelOverrides.TryGetValue(_categoryName, out var logLevel) switch
-            {
-                true when logLevel > _options.MinimumLogLevel => logLevel,
-                _ => _options.MinimumLogLevel
-            };
+            var categoryMatch = _options
+                .MinimumLevelOverrides
+                .Where(kv => categoryName.StartsWith(kv.Key, StringComparison.OrdinalIgnoreCase))
+                .OrderByDescending(kv => kv.Key.Length)
+                .FirstOrDefault();
+
+            return !string.IsNullOrWhiteSpace(categoryMatch.Key)
+                ? categoryMatch.Value
+                : _options.MinimumLogLevel;
         }
     }
 }

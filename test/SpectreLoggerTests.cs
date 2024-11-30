@@ -61,6 +61,43 @@ namespace Vertical.SpectreLogger.Tests
                 .ShouldBeEmpty();
         }
 
+        private const bool Filtered = true;
+        private const bool Emitted = false;
+
+        [Theory]
+        [InlineData("Microsoft.Hosting", LogLevel.Information, "Microsoft.Hosting", LogLevel.Information, Emitted)]
+        [InlineData("Microsoft.Hosting", LogLevel.Information, "Microsoft.Hosting", LogLevel.Warning, Emitted)]
+        [InlineData("Microsoft.Hosting", LogLevel.Warning, "Microsoft.Hosting", LogLevel.Information, Filtered)]
+        [InlineData("Microsoft.Hosting", LogLevel.Warning, "Microsoft.Hosting", LogLevel.Warning, Emitted)]
+        [InlineData("Microsoft.Hosting", LogLevel.Error, "Microsoft.Hosting", LogLevel.Debug, Filtered)]
+        [InlineData("Microsoft.Hosting", LogLevel.Error, "Microsoft.Hosting", LogLevel.Information, Filtered)]
+        [InlineData("Microsoft.Hosting", LogLevel.Error, "Microsoft.Hosting", LogLevel.Warning, Filtered)]
+        [InlineData("Microsoft.Hosting", LogLevel.Error, "Microsoft.Hosting", LogLevel.Error, Emitted)]
+        [InlineData("Microsoft.Hosting", LogLevel.Information, "Microsoft.Hosting.LifeTime", LogLevel.Information, Emitted)]
+        [InlineData("Microsoft.Hosting", LogLevel.Warning, "Microsoft.Hosting.LifeTime", LogLevel.Information, Filtered)]
+        [InlineData("Microsoft.Hosting", LogLevel.Warning, "Microsoft.Hosting.Internal", LogLevel.Information, Filtered)]
+        [InlineData("Microsoft.Hosting", LogLevel.Error, "Microsoft.Hosting.Internal", LogLevel.Information, Filtered)]
+        [InlineData("Microsoft.Data", LogLevel.Error, "Microsoft.Hosting.Internal", LogLevel.Information, Emitted)]
+        public void LoggerEmitsExpectedForPatternMatchedMinimumOverride(
+            string overrideCategory,
+            LogLevel overrideLevel,
+            string eventCategory,
+            LogLevel eventLevel,
+            bool expected)
+        {
+             var captured = RendererTestHarness.Capture(
+                cfg =>
+                {
+                    cfg.SetMinimumLevel(LogLevel.Information);
+                    cfg.SetMinimumLevel(overrideCategory, overrideLevel);
+                    cfg.ConfigureProfiles(profile => profile.OutputTemplate = "{Message}");
+                },
+                log => log.Log(eventLevel, "event"),
+                loggerName: eventCategory);
+             
+             string.IsNullOrEmpty(captured).ShouldBe(expected);
+        }
+
         [Fact]
         public void LoggerPreservesFormatStringWhenConfigured()
         {
