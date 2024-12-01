@@ -1,5 +1,4 @@
 ﻿using Vertical.SpectreLogger.Core;
-using Vertical.SpectreLogger.Internal;
 
 namespace Vertical.SpectreLogger.Scopes
 {

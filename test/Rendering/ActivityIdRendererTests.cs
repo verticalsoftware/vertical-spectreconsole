@@ -1,13 +1,5 @@
 using System.Diagnostics;
-using System.Text.RegularExpressions;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NSubstitute;
-using Shouldly;
-using Spectre.Console;
-using Vertical.SpectreLogger.Output;
-using Vertical.SpectreLogger.Rendering;
-using Vertical.SpectreLogger.Templates;
 using Vertical.SpectreLogger.Tests.Infrastructure;
 using Xunit;
 

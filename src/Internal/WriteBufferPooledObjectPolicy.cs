@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Extensions.ObjectPool;
-using Spectre.Console;
 using Vertical.SpectreLogger.Output;
 
 namespace Vertical.SpectreLogger.Internal

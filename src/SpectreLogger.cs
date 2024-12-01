@@ -1,8 +1,8 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Microsoft.Extensions.Logging;
 using Vertical.SpectreLogger.Core;
+using Vertical.SpectreLogger.Internal;
 using Vertical.SpectreLogger.Options;
 using Vertical.SpectreLogger.Scopes;
 
@@ -31,7 +31,7 @@ namespace Vertical.SpectreLogger
             _categoryName = categoryName;
             _options = options;
             _logEventFilter = _options.LogEventFilter;
-            _minimumLevel = ResolveMinimumLevel(categoryName);
+            _minimumLevel = options.GetLogLevelFilter(categoryName);
         }
 
         /// <inheritdoc />
@@ -75,19 +75,6 @@ namespace Vertical.SpectreLogger
         public IDisposable BeginScope<TState>(TState state) where TState : notnull
         {
             return _scopeManager.BeginScope(state);
-        }
-
-        private LogLevel ResolveMinimumLevel(string categoryName)
-        {
-            var categoryMatch = _options
-                .MinimumLevelOverrides
-                .Where(kv => categoryName.StartsWith(kv.Key, StringComparison.OrdinalIgnoreCase))
-                .OrderByDescending(kv => kv.Key.Length)
-                .FirstOrDefault();
-
-            return !string.IsNullOrWhiteSpace(categoryMatch.Key)
-                ? categoryMatch.Value
-                : _options.MinimumLogLevel;
         }
     }
 }

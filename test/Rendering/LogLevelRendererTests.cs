@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Shouldly;
 using Vertical.SpectreLogger.Tests.Infrastructure;

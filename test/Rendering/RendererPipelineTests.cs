@@ -2,13 +2,11 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using Microsoft.Extensions.Options;
-using Microsoft.VisualBasic;
 using NSubstitute;
 using Vertical.SpectreLogger.Core;
 using Vertical.SpectreLogger.Options;
 using Vertical.SpectreLogger.Output;
 using Vertical.SpectreLogger.Rendering;
-using Vertical.SpectreLogger.Scopes;
 using Vertical.SpectreLogger.Templates;
 using Vertical.SpectreLogger.Tests.Infrastructure;
 using Xunit;

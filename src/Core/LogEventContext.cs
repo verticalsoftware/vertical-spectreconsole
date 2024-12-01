@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Extensions.Logging;
-using Vertical.SpectreLogger.Internal;
 using Vertical.SpectreLogger.Options;
 
 namespace Vertical.SpectreLogger.Core

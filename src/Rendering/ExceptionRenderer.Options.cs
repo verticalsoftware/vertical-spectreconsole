@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Vertical.SpectreLogger.Rendering
+﻿namespace Vertical.SpectreLogger.Rendering
 {
     public partial class ExceptionRenderer
     {

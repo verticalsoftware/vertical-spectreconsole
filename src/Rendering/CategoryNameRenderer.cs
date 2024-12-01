@@ -1,5 +1,4 @@
 ﻿using Vertical.SpectreLogger.Core;
-using Vertical.SpectreLogger.Formatting;
 using Vertical.SpectreLogger.Output;
 using Vertical.SpectreLogger.Templates;
 

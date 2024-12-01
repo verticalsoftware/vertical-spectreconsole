@@ -1,5 +1,3 @@
-using Vertical.SpectreLogger.Output;
-
 namespace Vertical.SpectreLogger.Core
 {
     /// <summary>

@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.Extensions.Options;
 using Shouldly;
 using Vertical.SpectreLogger.Core;
-using Vertical.SpectreLogger.Internal;
 using Vertical.SpectreLogger.Options;
 using Vertical.SpectreLogger.Output;
 using Vertical.SpectreLogger.Rendering;

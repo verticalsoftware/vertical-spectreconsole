@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Shouldly;
-using Vertical.SpectreLogger.Formatting;
 using Vertical.SpectreLogger.Rendering;
 using Vertical.SpectreLogger.Tests.Infrastructure;
 using Xunit;
